@@ -5,5 +5,8 @@
   "license": "MIT",
   "dependencies": {
     "@slack/bolt": "^3.3.0"
+  },
+  "devDependencies": {
+    "serverless": "^2.33.1"
   }
 }
