@@ -9,9 +9,5 @@ provider:
 functions:
   slack:
     handler: app.handler
-    events:
-      - http:
-          path: slack/events
-          method: post
 plugins:
   - serverless-offline
