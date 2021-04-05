@@ -9,5 +9,7 @@ provider:
 functions:
   slack:
     handler: app.handler
+    events:
+      - schedule: cron(0 23 ? * MON *)
 plugins:
   - serverless-offline
