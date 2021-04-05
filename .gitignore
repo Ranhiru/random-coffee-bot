@@ -1,0 +1,4 @@
+.envrc
+
+# Dependency directories
+node_modules/
