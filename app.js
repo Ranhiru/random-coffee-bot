@@ -2,7 +2,7 @@ const { postRandomCoffeePairMessageToChannels } = require('./coffee_pair_generat
 
 const postMessageToChannel = async () => {
   try {
-    postRandomCoffeePairMessageToChannels();
+    await postRandomCoffeePairMessageToChannels();
   } catch (error) {
     console.error(error);
   }
