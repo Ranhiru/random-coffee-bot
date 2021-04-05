@@ -1,25 +1,33 @@
-const { App } = require('@slack/bolt');
+const { App, ExpressReceiver } = require('@slack/bolt');
+const serverlessExpress = require('@vendia/serverless-express');
+
+
+const expressReceiver = new ExpressReceiver({
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+  // The `processBeforeResponse` option is required for all FaaS environments.
+  // It allows Bolt methods (e.g. `app.message`) to handle a Slack request
+  // before the Bolt framework responds to the request (e.g. `ack()`). This is
+  // important because FaaS immediately terminate handlers after the response.
+  processBeforeResponse: true
+});
 
 // Initializes your app with your bot token and signing secret
 const app = new App({
+  receiver: expressReceiver,
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
-(async () => {
-  // Start your app
-  await app.start(process.env.PORT || 3000);
-  console.log('⚡️ Bolt app is running!');
+app.message('hello', async ({ message, say }) => {
+  await say(`Hello, <@${message.user}>`);
+});
 
-  try {
-    const result = await app.client.chat.postMessage({
-      channel: "random",
-      text: "Hello from Random Bot!",
-      token: process.env.SLACK_BOT_TOKEN
-    });
+app.message('goodbye', async ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  await say(`See ya later, <@${message.user}> :wave:`);
+});
 
-    console.log(result);
-  } catch (error) {
-    console.error(error);
-  }
-})();
+// Handle the Lambda function event
+module.exports.handler = serverlessExpress({
+  app: expressReceiver.app
+});
