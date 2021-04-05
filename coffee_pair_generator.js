@@ -32,7 +32,7 @@ async function postRandomCoffeePairMessageToChannels() {
       const membersThatAreNotBot = membersInChannel.filter(member => member !== botUserId)
       const memberGroups = convertMemberListToGroups(membersThatAreNotBot, MEMBERS_PER_GROUP);
       const messageToPost = generateRandomCoffeePairMessage(memberGroups);
-      return postMessage(channel.id, messageToPost);
+      await postMessage(channel.id, messageToPost);
     });
 }
 
