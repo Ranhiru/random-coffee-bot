@@ -1,4 +1,4 @@
-const { postRandomCoffeePairMessageToChannels } = require('./coffee_pair_generator.js');
+const { postRandomCoffeePairMessageToChannels } = require('./lib/coffee_pair_generator.js');
 
 const postMessageToChannel = async () => {
   try {
