@@ -7,11 +7,11 @@
     "@slack/bolt": "^3.3.0",
     "lodash": "^4.17.21"
   },
-  "scripts": { 
-    "test": "jasmine"
-   },
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
-    "jasmine": "^3.7.0",
+    "jest": "^26.6.3",
     "serverless": "^2.33.1",
     "serverless-offline": "^6.9.0"
   }
