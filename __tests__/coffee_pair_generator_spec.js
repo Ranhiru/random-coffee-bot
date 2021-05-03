@@ -1,7 +1,16 @@
-const { generateMessageForGroup } = require('../lib/coffee_pair_generator.js');
+const { generateMessageForGroup, generateRandomCoffeePairMessage } = require("../lib/coffee_pair_generator.js");
 
-describe("generateMessageForGroup", function () {
-  it("will generate a message with the given index and groups", function() {
-    expect(generateMessageForGroup(1, ["John", "James"])).toEqual("1. <@John> and <@James> \n");
+describe("generateRandomCoffeePairMessage", () => {
+  it("will generate a message with the pairs", () => {
+    const pairs = [
+      ["John", "Jude"],
+      ["Mary", "Mark"]
+    ];
+
+    const coffeePairMessage = generateRandomCoffeePairMessage(pairs);
+
+    expect(coffeePairMessage).toContain("This weeks random coffees are:");
+    expect(coffeePairMessage).toContain(`1. <@John> and <@Jude>`);
+    expect(coffeePairMessage).toContain(`2. <@Mary> and <@Mark>`);
   });
 });
