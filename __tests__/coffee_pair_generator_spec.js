@@ -20,22 +20,38 @@ describe("chunkInToGroups", function() {
     const members = [ "John", "Craig", "Mary", "Mark"];
 
     const membersPerGroup = 2;
-    const pairs = chunkInToGroups(members, membersPerGroup);
-    expect(pairs.length).toEqual(2)
+    const groups = chunkInToGroups(members, membersPerGroup);
+    expect(groups.length).toEqual(2)
 
-    expect(pairs[0]).toEqual(["John", "Craig"])
-    expect(pairs[1]).toEqual(["Mary", "Mark"])
+    expect(groups[0]).toEqual(["John", "Craig"])
+    expect(groups[1]).toEqual(["Mary", "Mark"])
   });
 
   it("will combine the group with odd number of members with the last group if the groups are not the same size", function() {
     const members = [ "John", "Craig", "Mary", "Mark", "Duncan", "Stu", "Brett"];
 
     const membersPerGroup = 3;
-    const pairs = chunkInToGroups(members, membersPerGroup);
+    const groups = chunkInToGroups(members, membersPerGroup);
 
-    expect(pairs.length).toEqual(2)
+    expect(groups.length).toEqual(2)
 
-    expect(pairs[0]).toEqual(["John", "Craig", "Mary"])
-    expect(pairs[1]).toEqual(["Mark", "Duncan", "Stu", "Brett"])
+    expect(groups[0]).toEqual(["John", "Craig", "Mary"])
+    expect(groups[1]).toEqual(["Mark", "Duncan", "Stu", "Brett"])
+  });
+
+  it("will not attempt to chunk when the list is smaller than the number of elements per group", function() {
+    const members = ["John", "Craig"];
+    const membersPerGroup = 4;
+    const groups = chunkInToGroups(members, membersPerGroup);
+    expect(groups.length).toEqual(1)
+    expect(groups[0]).toEqual(["John", "Craig"])
+  });
+
+  it("will not attempt to chunk when the list size is equal to the number of elements per group", function() {
+    const members = ["John"];
+    const membersPerGroup = 1;
+    const groups = chunkInToGroups(members, membersPerGroup);
+    expect(groups.length).toEqual(1);
+    expect(groups[0]).toEqual(["John"]);
   });
 })
