@@ -16,7 +16,7 @@ describe("generateRandomCoffeePairMessage", () => {
 });
 
 describe("chunkInToGroups", function() {
-  it("will create chunks with equal numbers number of members", function() {
+  it("will create chunks with equal number of members", function() {
     const members = [ "John", "Craig", "Mary", "Mark"];
 
     const membersPerGroup = 2;
@@ -27,7 +27,7 @@ describe("chunkInToGroups", function() {
     expect(pairs[1]).toEqual(["Mary", "Mark"])
   });
 
-  it("will combine a group with odd number of members with the last group if the groups are not the same size", function() {
+  it("will combine the group with odd number of members with the last group if the groups are not the same size", function() {
     const members = [ "John", "Craig", "Mary", "Mark", "Duncan", "Stu", "Brett"];
 
     const membersPerGroup = 3;
