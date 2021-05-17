@@ -53,4 +53,4 @@ The lambda function when invoked, checks all the channels it's invited to and fo
 
 1. The schedule of the message is configurable only by editing the cron expression in the serverless.yml
 1. Doesn't use OAuth so it cannot be installed on other Slack workspaces. 
-1. Single test case :(
+1. Limited testing
